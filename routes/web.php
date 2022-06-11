@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DomainController;
+use App\Http\Controllers\EnvironmentController;
+use App\Http\Controllers\RepositoryController;
+use App\Http\Controllers\ServerController;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +28,10 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    
+    Route::resource('/servers', ServerController::class);
+    Route::resource('/domains', DomainController::class);
+    Route::resource('/repositories', RepositoryController::class);
+    Route::resource('/repositories/{repository}/environments', EnvironmentController::class);
 });
