@@ -27,6 +27,9 @@
                     <x-jet-nav-link href="{{ route('sites.index') }}" :active="request()->routeIs('sites.*')">
                         {{ __('Sites') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('files.index') }}" :active="request()->routeIs('files.*')">
+                        {{ __('Files') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 

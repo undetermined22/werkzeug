@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DomainController;
 use App\Http\Controllers\EnvironmentController;
 use App\Http\Controllers\RepositoryController;
 use App\Http\Controllers\ServerController;
 use App\Http\Controllers\SiteController;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,4 +36,7 @@ Route::middleware([
     Route::resource('/repositories', RepositoryController::class);
     Route::resource('/repositories/{repository}/environments', EnvironmentController::class);
     Route::resource('/sites', SiteController::class);
+    Route::prefix('files')->name('files.')->controller(FileController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+    });
 });
